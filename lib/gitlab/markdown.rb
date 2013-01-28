@@ -162,7 +162,7 @@ module Gitlab
 
     def reference_user(identifier)
       if member = @project.users_projects.joins(:user).where(users: { username: identifier }).first
-        link_to(strike_out("@#{identifier}", member.blocked?), project_team_member_url(@project, member), html_options.merge(class: "gfm gfm-team_member #{html_options[:class]}")) if member
+        link_to(strike_out("@#{identifier}", member.user.blocked?), project_team_member_url(@project, member), html_options.merge(class: "gfm gfm-team_member #{html_options[:class]}")) if member
       end
     end
 
